@@ -1,0 +1,10 @@
+﻿traincascade
+-data D:\Repo\centerRecTrainer\cascade -vec D:\Repo\centerRecTrainer\cascade\vb16x16.vec -bg D:\Repo\centerRecTrainer\bg.txt -w 16 -h 16 -featureType HAAR -mode ALL -numPos 7500 -numNeg 7500 -numStages 40  -minHitRate 0.998
+
+important for quality of detector
+-enough stages to reduce false positives to <5%
+-number of positive and negative samples is equal
+-not randomized order of training data, but similar samples should go one after another?
+
+createsamples
+-vec D:\Repo\centerRecTrainer\cascade\vb16x16.vec -info D:\Repo\centerRecTrainer\info.txt -bg D:\Repo\centerRecTrainer\bg.txt -bgthresh 1 -show -w 16 -h 16 -maxzangle 15 -num 9504

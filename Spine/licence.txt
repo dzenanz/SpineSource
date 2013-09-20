@@ -1,0 +1,5 @@
+﻿I release the code which have I written under MIT licence, http://opensource.org/licenses/MIT
+
+Copyright (c) 2013 Dženan Zukić
+
+This probably does not apply to code parts I have copied (and modified) from other open source code so the whole project is probably under GPL.

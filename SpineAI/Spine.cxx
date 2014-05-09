@@ -1,6 +1,6 @@
 #include "mainWindow.h"
 #include "MainLogic.h"
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <iostream>
 #include <fstream>
 #include <itkFileOutputWindow.h>

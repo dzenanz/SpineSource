@@ -59,7 +59,7 @@ private:
     void drawCenterline();
 
 public slots:
-    //void recalcCenterline();
+    void recalcCenterline();
     void renderNeeded();
     void clearMasks();
     void volumeOpen(std::string filename);
@@ -67,6 +67,6 @@ public slots:
     void detectCenters();
     void autoInitSegmentation();
 	void vertebraCentersPicked(int labelIndex);
-	void clipWithBoundingGeometry(bool activated);
+	void clipWithBoundingGeometry(bool triggered);
 	void changeBGRadius(double radius);
 };

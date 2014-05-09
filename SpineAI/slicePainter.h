@@ -36,7 +36,7 @@ signals:
 	void vertebraCentersPicked(int labelIndex);
 	void showStatusMessage(const QString & msg, int timeout = 0);
 	//The signals for communication with the MainLogic-Class.
-	void clipWithBoundingGeometry(bool activated);
+	void clipWithBoundingGeometry(bool triggered);
 	void changeBGRadius(double delta);
     void centersChanged();
 

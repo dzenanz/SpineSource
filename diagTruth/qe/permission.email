@@ -1,0 +1,189 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: dzenanz@gmail.com
+Received: by 10.223.103.136 with SMTP id k8cs74311fao;
+        Fri, 23 Apr 2010 10:23:06 -0700 (PDT)
+Received: by 10.87.40.32 with SMTP id s32mr913255fgj.21.1272043385901;
+        Fri, 23 Apr 2010 10:23:05 -0700 (PDT)
+Return-Path: <zukic@fb12.uni-siegen.de>
+Received: from mail.uni-siegen.de (mailf2.uni-siegen.de [141.99.1.42])
+        by mx.google.com with ESMTP id e3si1481702fga.14.2010.04.23.10.23.05;
+        Fri, 23 Apr 2010 10:23:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zukic@fb12.uni-siegen.de designates 141.99.1.42 as permitted sender) client-ip=141.99.1.42;
+Authentication-Results: mx.google.com; spf=pass (google.com: domain of zukic@fb12.uni-siegen.de designates 141.99.1.42 as permitted sender) smtp.mail=zukic@fb12.uni-siegen.de
+Resent-From: <zukic@fb12.uni-siegen.de>
+Received: from smtp4.hrz.uni-siegen.de (141.99.103.24) by mailf2.uni-siegen.de
+ (141.99.1.44) with Microsoft SMTP Server id 8.2.254.0; Fri, 23 Apr 2010
+ 19:23:05 +0200
+Received: from smtp4.hrz.uni-siegen.de (localhost.localdomain [127.0.0.1])	by
+ smtp4.hrz.uni-siegen.de (Postfix) with ESMTP id 68E2037FED	for
+ <zukic@fb12.uni-siegen.de>; Fri, 23 Apr 2010 19:23:05 +0200 (CEST)
+Received: from localhost (localhost.localdomain [127.0.0.1])	by
+ smtp4.hrz.uni-siegen.de (Postfix) with ESMTP id 5184937FEC	for
+ <zukic@fb12.uni-siegen.de>; Fri, 23 Apr 2010 19:23:05 +0200 (CEST)
+X-Spam-Score: -2.309
+X-Spam-Level:
+X-Spam-Status: No, score=-2.309 tagged_above=-10 required=6
+	tests=[HTML_MESSAGE=0.001, RCVD_IN_DNSWL_MED=-2.3,
+	T_RP_MATCHES_RCVD=-0.01]
+X-policyd-weight: CL_IP_EQ_HELO_IP=-2 (check from: .cmu. - helo: .smtp01.srv.cs.cmu. - helo-domain: .cmu.)  FROM/MX_MATCHES_HELO(DOMAIN)=-2; rate: -4
+X-Greylist: delayed 2910 seconds by postgrey-1.31 at greylisti; Fri, 23 Apr 2010 19:23:03 CEST
+Received: from smtp01.srv.cs.cmu.edu (SMTP01.SRV.CS.CMU.EDU [128.2.217.196])
+	by smtp4.hrz.uni-siegen.de (Postfix) with ESMTP id C7FC637FE4	for
+ <zukic@fb12.uni-siegen.de>; Fri, 23 Apr 2010 19:23:02 +0200 (CEST)
+Received: from [192.168.4.12] (LAUWERS.ECE.CMU.EDU [128.2.134.127])
+	(authenticated bits=0)	by smtp01.srv.cs.cmu.edu (8.13.6/8.13.6) with ESMTP id
+ o3NGYUEe016505	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NO);
+	Fri, 23 Apr 2010 12:34:30 -0400 (EDT)
+CC: Paul Heckbert <ph@cs.cmu.edu>, <efros@cs.cmu.edu>
+From: Paul Heckbert <ph@cs.cmu.edu>
+To: Denan Zuki <zukic@fb12.uni-siegen.de>
+MIME-Version: 1.0 (Apple Message framework v936)
+Date: Fri, 23 Apr 2010 12:34:30 -0400
+References: <Pine.LNX.4.63.1004231045030.8057@balaton.graphics.cs.cmu.edu>
+X-Mailer: Apple Mail (2.936)
+X-Scanned-By: mimedefang-cmuscs on 128.2.217.196
+Message-ID: <05EBF64B-2E4F-4A65-AF39-D13210676DEA@cs.cmu.edu>
+Content-Type: multipart/alternative; boundary="Apple-Mail-25--471989219"
+Subject: quad-edge code from assignments
+X-Anti-Virus: Kaspersky Anti-Virus for Linux Mail Server 5.6.39/RELEASE,
+	 bases: 20100423 #3973498, check: 20100423 clean
+Return-Path: ph@cs.cmu.edu
+
+--Apple-Mail-25--471989219
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed; delsp=yes
+Content-Transfer-Encoding: quoted-printable
+
+Yes, you can use the code.  Just credit the authors.  thanks
+
+Begin forwarded message:
+
+> From: Alexei Efros <efros@cs.cmu.edu>
+> Date: 2010/04/23 10:45:13 AM EDT
+> To: Paul Heckbert <ph@cs.cmu.edu>
+> Subject: Code from assignments (fwd)
+>
+>
+> I guess this is for you. :)
+> -a.
+>
+> ---------- Forwarded message ----------
+> Date: Fri, 23 Apr 2010 15:17:59 +0200
+> From: "[UTF-8] Denan Zuki" <zukic@fb12.uni-siegen.de>
+> To: efros@cs.cmu.edu
+> Subject: Code from assignments
+>
+> Dear Prof. Efros,
+>
+> Last year I came across quad-edge library
+> =
+here<http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quaded=
+ge.html=20
+> >
+> (code
+> here =
+<http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/cell/=20
+> >).
+> This code was given out to students as part of an assignment on this
+> =
+course<http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/www/463.htm=
+l=20
+> >.
+> I inquired about licence of this code to Paul Heckbert <ph=20
+> +@cs.cmu.edu> (email
+> address from his personal page <http://www.cs.cmu.edu/~ph/>). =20
+> However, I
+> sent a question in August last year, and I still have not received any
+> response (I guess he does not use/check that address any more). But =20=
+
+> maybe
+> you know:
+>
+> Under which licence is that code? And if there is no specific =20
+> decision about
+> licencing that code, what is your institution's policy regarding =20
+> such (or
+> similar) cases?
+>
+> I would like to use this code, because I like its style (no needless
+> templates which complicate usage and debugging), if it is available =20=
+
+> under
+> suitable open-source licence.
+>
+> Best regards,
+> D=C5=BEenan
+>
+> P.S. I you are interested about our group, you can get more info
+> here<http://www.cg.informatik.uni-siegen.de/People/>
+> .
+
+
+--Apple-Mail-25--471989219
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space; ">Yes, you can use the code. =
+&nbsp;Just credit the authors. &nbsp;thanks<br><div><br><div>Begin =
+forwarded message:</div><br =
+class=3D"Apple-interchange-newline"><blockquote type=3D"cite"><div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><font face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><b>From: =
+</b></font><font face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px =
+Helvetica">Alexei Efros &lt;<a =
+href=3D"mailto:efros@cs.cmu.edu">efros@cs.cmu.edu</a>&gt;</font></div><div=
+ style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><font face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><b>Date: =
+</b></font><font face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px =
+Helvetica">2010/04/23 10:45:13 AM EDT</font></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><font face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><b>To: </b></font><font =
+face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px Helvetica">Paul =
+Heckbert &lt;<a =
+href=3D"mailto:ph@cs.cmu.edu">ph@cs.cmu.edu</a>&gt;</font></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; "><font face=3D"Helvetica" size=3D"3" color=3D"#000000" =
+style=3D"font: 12.0px Helvetica; color: #000000"><b>Subject: =
+</b></font><font face=3D"Helvetica" size=3D"3" style=3D"font: 12.0px =
+Helvetica"><b>Code from assignments (fwd)</b></font></div><div =
+style=3D"margin-top: 0px; margin-right: 0px; margin-bottom: 0px; =
+margin-left: 0px; min-height: 14px; "><br></div> </div><div><br>I guess =
+this is for you. :)<br>-a.<br><br>---------- Forwarded message =
+----------<br>Date: Fri, 23 Apr 2010 15:17:59 +0200<br>From: "[UTF-8] =
+Denan Zuki" &lt;<a =
+href=3D"mailto:zukic@fb12.uni-siegen.de">zukic@fb12.uni-siegen.de</a>&gt;<=
+br>To: <a =
+href=3D"mailto:efros@cs.cmu.edu">efros@cs.cmu.edu</a><br>Subject: Code =
+from assignments<br><br>Dear Prof. Efros,<br><br>Last year I came across =
+quad-edge library<br>here&lt;<a =
+href=3D"http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/qua=
+dedge.html">http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2=
+/quadedge.html</a>&gt;<br>(code<br>here &lt;<a =
+href=3D"http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/cel=
+l/">http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/cell/</=
+a>&gt;).<br>This code was given out to students as part of an assignment =
+on this<br>course&lt;<a =
+href=3D"http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/www/463.ht=
+ml">http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/www/463.html</=
+a>&gt;.<br>I inquired about licence of this code to Paul Heckbert &lt;<a =
+href=3D"mailto:ph+@cs.cmu.edu">ph+@cs.cmu.edu</a>&gt; (email<br>address =
+from his personal page &lt;<a =
+href=3D"http://www.cs.cmu.edu/~ph/">http://www.cs.cmu.edu/~ph/</a>&gt;). =
+However, I<br>sent a question in August last year, and I still have not =
+received any<br>response (I guess he does not use/check that address any =
+more). But maybe<br>you know:<br><br>Under which licence is that code? =
+And if there is no specific decision about<br>licencing that code, what =
+is your institution's policy regarding such (or<br>similar) =
+cases?<br><br>I would like to use this code, because I like its style =
+(no needless<br>templates which complicate usage and debugging), if it =
+is available under<br>suitable open-source licence.<br><br>Best =
+regards,<br>D=C5=BEenan<br><br>P.S. I you are interested about our =
+group, you can get more info<br>here&lt;<a =
+href=3D"http://www.cg.informatik.uni-siegen.de/People/">http://www.cg.info=
+rmatik.uni-siegen.de/People/</a>&gt;<br>.</div></blockquote></div><br></bo=
+dy></html>=
+
+--Apple-Mail-25--471989219--

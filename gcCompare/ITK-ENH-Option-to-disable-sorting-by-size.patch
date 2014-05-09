@@ -1,0 +1,122 @@
+From 3b4da873b1baf6393fc84084f9c1b1a58435c7a0 Mon Sep 17 00:00:00 2001
+From: Dzenan Zukic <dzenanz@gmail.com>
+Date: Wed, 5 Dec 2012 11:55:54 +0100
+Subject: [PATCH 001/228] ENH: Option to disable sorting by size
+
+Change-Id: I5a46f8fba6896130a52a87c073b335755521bd37
+---
+ .../include/itkRelabelComponentImageFilter.h       |   25 +++++++++++++++-----
+ .../include/itkRelabelComponentImageFilter.hxx     |   10 ++++----
+ 2 files changed, 25 insertions(+), 10 deletions(-)
+
+diff --git a/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.h b/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.h
+index 65f23c8..1119023 100644
+--- a/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.h
++++ b/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.h
+@@ -169,6 +169,14 @@ public:
+    * through to the output. */
+   itkGetConstMacro(MinimumObjectSize, ObjectSizeType);
+ 
++  /** Controls whether the object labels are sorted by size.
++   * If false, order of labels is kept. */
++  itkSetMacro(SortByObjectSize, bool);
++
++  /** Controls whether the object labels are sorted by size.
++   * If false, order of labels is kept. */
++  itkGetConstMacro(SortByObjectSize, bool);
++
+   /** Get the size of each object in pixels. This information is only
+    * valid after the filter has executed.  Size of the background is
+    * not calculated.  Size of object #1 is
+@@ -242,7 +250,8 @@ protected:
+ 
+   RelabelComponentImageFilter():
+     m_NumberOfObjects(0), m_NumberOfObjectsToPrint(10),
+-    m_OriginalNumberOfObjects(0), m_MinimumObjectSize(0)
++    m_OriginalNumberOfObjects(0), m_MinimumObjectSize(0),
++    m_SortByObjectSize(true)
+   { this->InPlaceOff(); }
+   virtual ~RelabelComponentImageFilter() {}
+ 
+@@ -268,20 +277,21 @@ protected:
+   // put the function objects here for sorting in descending order
+   class RelabelComponentSizeInPixelsComparator
+   {
+-public:
++  public:
++    RelabelComponentSizeInPixelsComparator(bool sortByObjectSize):
++        m_SortByObjectSize(sortByObjectSize) {};
+     bool operator()(const RelabelComponentObjectType & a,
+                     const RelabelComponentObjectType & b)
+     {
+-      if ( a.m_SizeInPixels > b.m_SizeInPixels )
++      if ( m_SortByObjectSize && a.m_SizeInPixels > b.m_SizeInPixels )
+         {
+         return true;
+         }
+-      else if ( a.m_SizeInPixels < b.m_SizeInPixels )
++      else if ( m_SortByObjectSize && a.m_SizeInPixels < b.m_SizeInPixels )
+         {
+         return false;
+         }
+-      // size in pixels and physical units are the same, sort based on
+-      // original object number
++      // else sort based on original object number
+       else if ( a.m_ObjectNumber < b.m_ObjectNumber )
+         {
+         return true;
+@@ -291,6 +301,8 @@ public:
+         return false;
+         }
+     }
++  private:
++    bool m_SortByObjectSize;
+   };
+ 
+ private:
+@@ -301,6 +313,7 @@ private:
+   LabelType      m_NumberOfObjectsToPrint;
+   LabelType      m_OriginalNumberOfObjects;
+   ObjectSizeType m_MinimumObjectSize;
++  bool           m_SortByObjectSize;
+ 
+   ObjectSizeInPixelsContainerType         m_SizeOfObjectsInPixels;
+   ObjectSizeInPhysicalUnitsContainerType  m_SizeOfObjectsInPhysicalUnits;
+diff --git a/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.hxx b/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.hxx
+index 1305cac..e0a7cbc 100644
+--- a/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.hxx
++++ b/Modules/Segmentation/ConnectedComponents/include/itkRelabelComponentImageFilter.hxx
+@@ -117,7 +117,7 @@ RelabelComponentImageFilter< TInputImage, TOutputImage >
+     progress.CompletedPixel();
+     }
+ 
+-  // Now we need to reorder the labels. Use the m_ObjectSortingOrder
++  // Now we need to reorder the labels. Use the m_SortByObjectSize
+   // to determine how to sort the objects. Define a map for converting
+   // input labels to output labels.
+   //
+@@ -135,8 +135,9 @@ RelabelComponentImageFilter< TInputImage, TOutputImage >
+     sizeVector.push_back( ( *mapIt ).second );
+     }
+ 
+-  // sort the objects by size and define the map to use to relabel the image
+-  std::sort( sizeVector.begin(), sizeVector.end(), RelabelComponentSizeInPixelsComparator() );
++  // sort the objects (by size or number) and define the map to use to relabel the image
++  std::sort( sizeVector.begin(), sizeVector.end(),
++      RelabelComponentSizeInPixelsComparator(m_SortByObjectSize) );
+ 
+   // create a lookup table to map the input label to the output label.
+   // cache the object sizes for later access by the user
+@@ -229,7 +230,8 @@ RelabelComponentImageFilter< TInputImage, TOutputImage >
+   os << indent << "OriginalNumberOfObjects: " << m_OriginalNumberOfObjects << std::endl;
+   os << indent << "NumberOfObjectsToPrint: "
+      << m_NumberOfObjectsToPrint << std::endl;
+-  os << indent << "MinimumObjectSizez: " << m_MinimumObjectSize << std::endl;
++  os << indent << "MinimumObjectSize: " << m_MinimumObjectSize << std::endl;
++  os << indent << "SortByObjectSize: " << m_SortByObjectSize << std::endl;
+ 
+   typename ObjectSizeInPixelsContainerType::const_iterator it;
+   ObjectSizeInPhysicalUnitsContainerType::const_iterator   fit;
+-- 
+1.7.10.msysgit.1
+

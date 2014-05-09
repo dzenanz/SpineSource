@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent)
     renderer->SetBackground(0.6f,0.6f,1.0f);
     renderer->Delete();
     volume=0;
-	on_actionReset_TF_activated();
+	on_actionReset_TF_triggered();
 
 	QSettings settings;
     settings.beginGroup("MainWindow");
@@ -126,7 +126,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 extern double round(double r);
 
-void MainWindow::on_actionReset_TF_activated()
+void MainWindow::on_actionReset_TF_triggered()
 {
 	opacity=0.05;
 	vThLow=90;
@@ -134,7 +134,7 @@ void MainWindow::on_actionReset_TF_activated()
 	constructTF();
 }
 
-void MainWindow::on_actionTF_shift_Up_activated()
+void MainWindow::on_actionTF_shift_Up_triggered()
 {
 	if (vThHigh<240)
 		vThHigh+=15;
@@ -143,7 +143,7 @@ void MainWindow::on_actionTF_shift_Up_activated()
 	constructTF();
 }
 
-void MainWindow::on_actionTF_shift_Down_activated()
+void MainWindow::on_actionTF_shift_Down_triggered()
 {
 	if (vThLow>15)
 		vThLow-=15;
@@ -152,14 +152,14 @@ void MainWindow::on_actionTF_shift_Down_activated()
 	constructTF();
 }
 
-void MainWindow::on_actionOpacityPlus_activated()
+void MainWindow::on_actionOpacityPlus_triggered()
 {
 	if (opacity<0.8)
 		opacity*=1.25;
 	constructTF();
 }
 
-void MainWindow::on_actionOpacityMinus_activated()
+void MainWindow::on_actionOpacityMinus_triggered()
 {
 	if (opacity>0.01)
 		opacity*=0.8;
@@ -194,7 +194,7 @@ void MainWindow::constructTF()
     }
 }
 
-void MainWindow::on_actionQuick_help_activated()
+void MainWindow::on_actionQuick_help_triggered()
 {
     QMessageBox::information(this, "Keyboard shortcuts","While 3D view widget has the focus:\n\
         s: switch polygonal models to surface view\n\
@@ -203,7 +203,7 @@ void MainWindow::on_actionQuick_help_activated()
 		+/-: adjust transparency");
 }
 
-void MainWindow::on_actionLoad_polygonal_mesh_activated()
+void MainWindow::on_actionLoad_polygonal_mesh_triggered()
 {
     std::string s = QFileDialog::getOpenFileName(this, tr("Open polygonal surface mesh"), "", 
         //tr("Polygonal surfaces (*.obj *.osg *.stl *.sta *.iv *.wrl);;All files (*.*)")).toStdString();
@@ -234,7 +234,7 @@ void MainWindow::on_actionLoad_polygonal_mesh_activated()
     }
 }
 
-void MainWindow::on_actionOpen_activated() //"Open" clicked on menu
+void MainWindow::on_actionOpen_triggered() //"Open" clicked on menu
 {
 	std::string s = QFileDialog::getOpenFileName(this, tr("Open Volume"), "",
         tr("3D images (*.dat *.mha *.mhd *.nrrd *.nii *.hdr *.dcm);;All files (*.*)")).toStdString();
@@ -242,7 +242,7 @@ void MainWindow::on_actionOpen_activated() //"Open" clicked on menu
         emit volumeOpened(s);
 }
 
-void MainWindow::on_actionOpen_DICOM_series_activated()
+void MainWindow::on_actionOpen_DICOM_series_triggered()
 {
 	std::string s = QFileDialog::getExistingDirectory(this, tr("Open DICOM directory"), ".").toStdString();
     if (s!="")
@@ -304,7 +304,7 @@ void MainWindow::openInitialization(const char * initFilename)
     painter->startSegmentationButtonClicked();
 }
 
-void MainWindow::on_actionOpen_initialization_activated()
+void MainWindow::on_actionOpen_initialization_triggered()
 {
 	std::string s = QFileDialog::getOpenFileName(this, tr("Open Initialization"), "", tr("Spine analyzer initializations (*.init)")).toStdString();
 	if (s!="")
@@ -349,7 +349,7 @@ void MainWindow::saveInitialization(std::string vertebraLabel, const char * volu
     }
 }
 
-void MainWindow::on_actionSave_slices_activated()
+void MainWindow::on_actionSave_slices_triggered()
 {
 	std::string s = QFileDialog::getSaveFileName(this, tr("Save slices"), "", tr("2D images (*.png *.bmp *.ppm *.tiff *.xpm *.xbm *.jpg)")).toStdString();
 	if (s!="")
@@ -360,7 +360,7 @@ void MainWindow::on_actionSave_slices_activated()
 	}
 }
 
-void MainWindow::on_actionScreenshot_activated()
+void MainWindow::on_actionScreenshot_triggered()
 {
 	std::string s = QFileDialog::getSaveFileName(this, tr("Save screenshot"), "", tr("2D images (*.png)")).toStdString();
 	if (s!="")
@@ -595,7 +595,7 @@ void MainWindow::applyFilter(InternalImageType::Pointer &image, itk::ImageToImag
 	statusbar->showMessage("Ready");
 }
 
-void MainWindow::on_actionAnisotropic_diffusion_activated()
+void MainWindow::on_actionAnisotropic_diffusion_triggered()
 {
 	typedef itk::GradientAnisotropicDiffusionImageFilter < InternalImageType, InternalImageType> FilterType;
 	FilterType::Pointer filter = FilterType::New();
@@ -606,7 +606,7 @@ void MainWindow::on_actionAnisotropic_diffusion_activated()
 	updateVisualization();
 }
 
-void MainWindow::on_actionMedian_denoising_activated()
+void MainWindow::on_actionMedian_denoising_triggered()
 {
 	typedef itk::MedianImageFilter < InternalImageType, InternalImageType> FilterType;
 	FilterType::Pointer filter = FilterType::New();
@@ -617,7 +617,7 @@ void MainWindow::on_actionMedian_denoising_activated()
 	updateVisualization();
 }
 
-void MainWindow::on_actionGaussian_smoothing_activated()
+void MainWindow::on_actionGaussian_smoothing_triggered()
 {
 	typedef itk::SmoothingRecursiveGaussianImageFilter < InternalImageType, InternalImageType> FilterType;
 	FilterType::Pointer filter = FilterType::New();
@@ -626,7 +626,7 @@ void MainWindow::on_actionGaussian_smoothing_activated()
 	updateVisualization();
 }
 
-void MainWindow::on_actionLogarithmic_rescaling_activated()
+void MainWindow::on_actionLogarithmic_rescaling_triggered()
 {
 	//statusbar->showMessage("Applying logarithmic rescaling (x=log(1+x) voxelwise)");
 	Log1Type::Pointer filter = Log1Type::New();
@@ -645,7 +645,7 @@ public:
 	   return b*input/(1+(b-1)*input);
    }
 };
-void MainWindow::on_actionSchlick_URQ_rescaling_activated()
+void MainWindow::on_actionSchlick_URQ_rescaling_triggered()
 {
 	statusbar->showMessage("Applying Schlick rescaling");
 	typedef itk::UnaryFunctorImageFilter<InternalImageType, InternalImageType, SchlickFunctor> FilterType;
@@ -658,7 +658,7 @@ void MainWindow::on_actionSchlick_URQ_rescaling_activated()
 	updateVisualization();
 }
 
-void MainWindow::on_actionClear_polygonal_data_activated()
+void MainWindow::on_actionClear_polygonal_data_triggered()
 {
     vtkSmartPointer<vtkProp> volume=vis->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->GetVolumes()->GetLastProp();
     vis->GetRenderWindow()->GetRenderers()->GetFirstRenderer()->GetViewProps()->RemoveAllItems();

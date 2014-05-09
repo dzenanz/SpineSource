@@ -39,26 +39,26 @@ signals:
 	void dicomOpened(std::string directory);
 
 public slots:
-	void on_actionAnisotropic_diffusion_activated();
-	void on_actionMedian_denoising_activated();
-    void on_actionClear_polygonal_data_activated();
+	void on_actionAnisotropic_diffusion_triggered();
+	void on_actionMedian_denoising_triggered();
+    void on_actionClear_polygonal_data_triggered();
 	void saveInitialization(std::string vertebraLabel, const char * volumeFilename);
 
 private slots:
-	void on_actionOpen_activated();
-	void on_actionOpen_DICOM_series_activated();
-	void on_actionOpen_initialization_activated();	
-	void on_actionSave_slices_activated();
-	void on_actionScreenshot_activated();
-	void on_actionGaussian_smoothing_activated();
-	void on_actionLogarithmic_rescaling_activated();
-	void on_actionSchlick_URQ_rescaling_activated();
-	void on_actionLoad_polygonal_mesh_activated();
-    void on_actionQuick_help_activated();
-	void on_actionTF_shift_Up_activated();
-	void on_actionTF_shift_Down_activated();
-	void on_actionOpacityPlus_activated();
-	void on_actionOpacityMinus_activated();
-	void on_actionReset_TF_activated();
+	void on_actionOpen_triggered();
+	void on_actionOpen_DICOM_series_triggered();
+	void on_actionOpen_initialization_triggered();	
+	void on_actionSave_slices_triggered();
+	void on_actionScreenshot_triggered();
+	void on_actionGaussian_smoothing_triggered();
+	void on_actionLogarithmic_rescaling_triggered();
+	void on_actionSchlick_URQ_rescaling_triggered();
+	void on_actionLoad_polygonal_mesh_triggered();
+    void on_actionQuick_help_triggered();
+	void on_actionTF_shift_Up_triggered();
+	void on_actionTF_shift_Down_triggered();
+	void on_actionOpacityPlus_triggered();
+	void on_actionOpacityMinus_triggered();
+	void on_actionReset_TF_triggered();
 };
 #endif

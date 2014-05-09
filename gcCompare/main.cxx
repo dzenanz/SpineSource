@@ -457,7 +457,7 @@ int main( int argc, char **argv )
     ofstream rs("randSeed.txt");
     rs<<randSeed;
     rs.close();
-    base=string(argv[1]); //original image
+    base="D:/Repo/SpineDatasets/"+string(argv[2]); //original image
 
     centers=openWithRescale(base);
     writeImage(centers, "base.pgm"); //needed for PW
@@ -467,8 +467,8 @@ int main( int argc, char **argv )
     roi->FillBuffer(0);
     maskPW->FillBuffer(0);
 
-    string v1(argv[4]); //start vertebra
-    string v2(argv[5]); //end vertebra
+    string v1(argv[5]); //start vertebra
+    string v2(argv[6]); //end vertebra
     while (labels[ind1]!=v1)
         ind1++;
     while (labels[ind2]!=v2)
@@ -476,27 +476,21 @@ int main( int argc, char **argv )
     if (ind1>ind2)
         swap(ind1, ind2);
 
-    folderManual=string(argv[2]);
-    string manualInit=folderManual.substr(0,folderManual.length()-1)+".init";
-    autoBase=string(argv[3]);
+    autoBase=string(argv[4]);
     _mkdir(autoBase.c_str());
     int slash=base.find_last_of("/\\");
     int dot=base.find_last_of('.');
     filename=base.substr(slash+1,dot-slash-1);
- 
-    for (int i=ind1; i<=ind2; i++)
-        center1(i);
-    constructBg();
 
+    folderManual="D:/Repo/Segmented/"+filename+'/';
+    string manualInit="D:/Repo/SpineInitializations/"+string(argv[3])+'/'+filename+".init";
+ 
     VisualizingImageType::Pointer temp;
     //temp=openImage("D:\\Temp\\clCombinedDS.mha");
     //writeImage(temp, "clCombDS.pgm");
 
-
     char fntemplate[11]="tmp_XXXXXX";
     tmp=_mktemp(fntemplate);
-    //VisualizingImageType::IndexType indSSC=createInit(vertIndex);
-    createInit(4); //index irrelevant and ignored
 
     //system("../Spine/Release/Spine.exe SpineSeg.init");
     STARTUPINFO siStartupInfo; 
@@ -505,7 +499,8 @@ int main( int argc, char **argv )
     memset(&piProcessInfo, 0, sizeof(piProcessInfo)); 
     siStartupInfo.cb = sizeof(siStartupInfo);
     string cmdLine=" "+manualInit+" D:/Temp/";//+" fullAuto"; //fullAuto ignores initialization points
-    CreateProcess("../SpineAI/Release/Spine.exe",&cmdLine[0],0,0,false,0,0,"../Spine",&siStartupInfo,&piProcessInfo);
+    string exeFile="../Spine"+string(argv[1])+"/Release/Spine.exe";
+    CreateProcess(exeFile.c_str(),&cmdLine[0],0,0,false,0,0,"../Spine",&siStartupInfo,&piProcessInfo);
     WaitForSingleObject(piProcessInfo.hProcess,INFINITE);
     //add timing before/after?
         
@@ -515,7 +510,14 @@ int main( int argc, char **argv )
     for (int i=ind2; i>=ind1; i--)
         fss<<labels[i]<<compare1(i)<<endl;
     fss.close();
+
     return 0; //we do not need to redo PW and GC segmentations
+
+    for (int i=ind1; i<=ind2; i++)
+        center1(i);
+    constructBg();
+    //VisualizingImageType::IndexType indSSC=createInit(vertIndex);
+    createInit(4); //index irrelevant and ignored
 
     writeImage(seeds, "seeds.mha");
     writeImage(seeds, "seeds.pgm");

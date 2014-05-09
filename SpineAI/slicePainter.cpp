@@ -242,6 +242,18 @@ void slicePainter::mouseMoveEvent(QMouseEvent *event)
             centers.at(movingPoint).x = mousePos.x();
             centers.at(movingPoint).y = mousePos.y();
 
+            //do the points need to be re-ordered
+            if (movingPoint>=1 && centers.at(movingPoint-1).y<centers.at(movingPoint).y)
+            {
+                std::swap(centers.at(movingPoint-1), centers.at(movingPoint));
+                movingPoint--;
+            }
+            if (movingPoint<=centers.size()-2 && centers.at(movingPoint).y<centers.at(movingPoint+1).y)
+            {
+                std::swap(centers.at(movingPoint), centers.at(movingPoint+1));
+                movingPoint++;
+            }                
+
             emit centersChanged();
 			paintSlice();
 		}

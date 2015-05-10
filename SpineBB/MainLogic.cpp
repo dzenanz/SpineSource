@@ -636,7 +636,7 @@ std::vector<vec3> adjecantVertebrae(Cell *qe, float avgDist, vec3& center,
 
 	//0.1rad = 5.8degrees; 0.78rad = 45deg
 	static int iter=0;
-	//objWriteCell(s, ("D:\\Temp\\merge"+QString::number(++iter)+"_before.obj").toStdString().c_str());
+	//objWriteCell(s, ("C:\\Temp\\merge"+QString::number(++iter)+"_before.obj").toStdString().c_str());
 	for (float angle=0.1; angle<=0.35; angle+=0.1) //due to numerical instabilities the angle ends up being 4.000001
 	{
 		while (mergeStep(s, angle)) //do mergesteps while merging is possible
@@ -646,7 +646,7 @@ std::vector<vec3> adjecantVertebrae(Cell *qe, float avgDist, vec3& center,
 	//removeDanglingEdges(s); removeDanglingEdges(s); removeDanglingEdges(s); //once is sometimes not enough
 	//objWriteCell(s, ("D:\\Temp\\merge"+QString::number(iter)+"angle"+QString::number(angle)+".obj").toStdString().c_str());
 	}
-	//objWriteCell(s, ("D:\\Temp\\merge"+QString::number(iter)+"after.obj").toStdString().c_str());
+	//objWriteCell(s, ("C:\\Temp\\merge"+QString::number(iter)+"after.obj").toStdString().c_str());
 
 	CellFaceIterator cellFaceIt(s);
 	Face *face;
@@ -889,7 +889,6 @@ double MainLogic::segmentOneButterfly(Vertebra *vertebra)
 	vertebra->qe=objReadCell("subdivBody.obj");
 	//vertebra->qe=objReadCell("icosahedron.obj");
 	calcVertexValence(vertebra->qe, false);
-    vertebra->calcAvgDistance();
 	CellVertexIterator it3(vertebra->qe);
 	Vertex *v;
 	while ((v = it3.next()) != 0)
@@ -901,7 +900,8 @@ double MainLogic::segmentOneButterfly(Vertebra *vertebra)
 
 	rotate(vertebra->qe, vec3(0,0,1), vertebra->axis);
     translate(vertebra->qe, vertebra->center);
-	copyPos2SubdivPos(vertebra->qe);
+    vertebra->calcAvgDistance();
+    copyPos2SubdivPos(vertebra->qe);
     if (mainForm.actionInteractive_inflation->isChecked())
     {
         vertebra->actor=poly2actor(qe2vtk(vertebra->qe), mainForm.actionShow_wireframe->isChecked());
@@ -967,8 +967,8 @@ double MainLogic::segmentOneButterfly(Vertebra *vertebra)
 			}
 		}
 
-        //objWriteCell(vertebra->qe, (QString::fromStdString(filename_base)+QString::number(vertebraNumber)
-        //             +"_"+QString::number(iter)+"before.obj").toStdString().c_str());
+        //objWriteCell(vertebra->qe, (QString::fromStdString(filename_base) + "_" + Vertebra::labels[vertebra->labelIndex]
+        //    + "_" + QString::number(iter) + "before.obj").toStdString().c_str());
 		oldDist=vertebra->radius;
 		vertebra->calcAvgDistance(); //update radius
 		vertebra->calcNewCenter();
@@ -995,8 +995,8 @@ double MainLogic::segmentOneButterfly(Vertebra *vertebra)
 				calculateSubdivisionPositions(vertebra->qe, maxLevel, freeLevels);
 			}
 		}
-		//objWriteCell(vertebra->qe, (QString::fromStdString(filename_base)+QString::number(vertebraNumber)
-  //                   +"_"+QString::number(iter)+"optimal.obj").toStdString().c_str());
+        //objWriteCell(vertebra->qe, (QString::fromStdString(filename_base) + "_" + Vertebra::labels[vertebra->labelIndex]
+        //    + "_" + QString::number(iter) + "after.obj").toStdString().c_str());
 
 		if (edgeLen>avgSpacing*1.95)
 		{

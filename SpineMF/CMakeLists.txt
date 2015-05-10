@@ -18,17 +18,10 @@ find_path(lp_solve_DIR lp_solve_5.5 DOC "A path to lpsolve.sourceforge.net/5.5/"
 INCLUDE_DIRECTORIES( ${lp_solve_DIR} )
 find_library(lp_solve_LIB lp_solve_5.5 DOC "A path to debug/release containing folder") #D:/SDK/lp_solve_5.5/lpsolve55/x64/
 
-
-FIND_PACKAGE(OpenCV REQUIRED)
-#message("OpenCV_LIBS=${OpenCV_LIBS}")
-FIND_PACKAGE(TBB REQUIRED) #required by OpenCV for threaded object recognition
-include_directories(${TBB_INCLUDE_DIRS})
-link_directories(${TBB_LIBRARY_DIRS})
-
 FIND_PACKAGE(ITK REQUIRED)
 INCLUDE(${ITK_USE_FILE})
 
-FIND_PACKAGE(VTK REQUIRED COMPONENTS vtkRenderingVolumeOpenGL vtkGUISupportQt vtkGUISupportQtOpenGL vtkRenderingQt vtkRenderingOpenGL NO_MODULE)
+FIND_PACKAGE(VTK REQUIRED NO_MODULE)
 #FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE})
 
@@ -72,10 +65,13 @@ QT5_WRAP_CPP( SAMPLE_MOC_SRCS ${SAMPLE_MOC_HDRS} )
 
 ADD_EXECUTABLE(Spine ${SAMPLE_SRCS} ${SAMPLE_MOC_HDRS} ${SAMPLE_MOC_SRCS} ${SAMPLE_RC_SRCS} ${SAMPLE_UI_HDRS})
 
-TARGET_LINK_LIBRARIES(Spine ${OpenCV_LIBS})
 #TARGET_LINK_LIBRARIES(Spine ${LevMar_DIR}/${CMAKE_CFG_INTDIR}/levmar.lib)
 TARGET_LINK_LIBRARIES(Spine ${lp_solve_LIB}/${CMAKE_CFG_INTDIR}/liblpsolve55.lib)
 qt5_use_modules(Spine Gui OpenGL Concurrent)
 TARGET_LINK_LIBRARIES(Spine ${ITK_LIBRARIES})
 TARGET_LINK_LIBRARIES(Spine ${VTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(Spine QuadEdge)
+
+IF(MSVC)
+  SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:LIBCMT /NODEFAULTLIB:LIBCMTD") #avoid error LNK1169: one or more multiply defined symbols found
+ENDIF(MSVC)

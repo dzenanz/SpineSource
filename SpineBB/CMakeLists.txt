@@ -21,7 +21,7 @@ find_library(lp_solve_LIB lp_solve_5.5 DOC "A path to debug/release containing f
 FIND_PACKAGE(ITK REQUIRED)
 INCLUDE(${ITK_USE_FILE})
 
-FIND_PACKAGE(VTK REQUIRED COMPONENTS vtkRenderingVolumeOpenGL vtkGUISupportQt vtkGUISupportQtOpenGL vtkRenderingQt vtkRenderingOpenGL NO_MODULE)
+FIND_PACKAGE(VTK REQUIRED NO_MODULE)
 #FIND_PACKAGE(VTK REQUIRED)
 INCLUDE(${VTK_USE_FILE})
 
@@ -65,3 +65,7 @@ qt5_use_modules(Spine Gui OpenGL Concurrent)
 TARGET_LINK_LIBRARIES(Spine ${ITK_LIBRARIES})
 TARGET_LINK_LIBRARIES(Spine ${VTK_LIBRARIES})
 TARGET_LINK_LIBRARIES(Spine QuadEdge)
+
+IF(MSVC)
+  SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:LIBCMT /NODEFAULTLIB:LIBCMTD") #avoid error LNK1169: one or more multiply defined symbols found
+ENDIF(MSVC)

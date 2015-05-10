@@ -1909,7 +1909,10 @@ void MainLogic::detectCenters()
     int centerSlice=0;
     for (int i=0; i<rects.size(); i++)
         centerSlice+=slices[i];
-    centerSlice=round(centerSlice/rects.size());
+    if (rects.size() > 0)
+        centerSlice=round(centerSlice/rects.size());
+    else
+        centerSlice = size[2] / 2;
     mainForm.painter->sliceSlider->setValue(centerSlice);
 
     for (int i=0; i<rects.size(); i++)
@@ -1923,7 +1926,7 @@ void MainLogic::detectCenters()
     }
 
     //re-order centers bottom to top
-    for (int i=0; i<mainForm.painter->centers.size()-1; i++)
+    for (int i=0; i<mainForm.painter->centers.size(); i++) //no -1, because size==0 => 0u-1=0xFF...F
         for (int k=i+1; k<mainForm.painter->centers.size(); k++)
             if (mainForm.painter->centers[i].y<mainForm.painter->centers[k].y)
                 swap(mainForm.painter->centers[i], mainForm.painter->centers[k]);
